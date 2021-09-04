@@ -19,7 +19,7 @@ yum install redis -y &>>/tmp/log
 status_check $?
 
 print "\e[1;33mConfiguring Redis Component\e[0m"
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf &>>/tmp/log
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf /etc/redis/redis.conf &>>/tmp/log
 status_check $?
 
 systemctl start redis
