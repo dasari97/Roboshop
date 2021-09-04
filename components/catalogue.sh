@@ -29,6 +29,7 @@ rm -rf catalogue && unzip -o /tmp/catalogue.zip &>>/tmp/log && mv catalogue-main
 status_check $?
 
 print "\e[1;33mLoading Dependency  for catalogue.\t\e[0m"
+cd /home/roboshop/catalogue
 npm install --unsafe-perm &>>/tmp/log
 status_check $?
 
