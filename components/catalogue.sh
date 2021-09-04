@@ -42,4 +42,4 @@ print "\e[1;35mEnabling Catalogue Component.\t\t\e[0m"
 mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service && systemctl daemon-reload && systemctl restart catalogue &&  systemctl enable catalogue &>>/tmp/log
 status_check $?
 
-print "\e[1;35mCatalogue Component is ready to use.\n\e[0m"
+print -n "\e[1;35mCatalogue Component is ready to use.\n\e[0m"
