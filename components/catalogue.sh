@@ -9,7 +9,7 @@ status_check $?
 
 echo -e "\e[1;35mLet's now set up the catalogue application.\e[0m"
 
-print "\e[1;33m Adding new user - 'roboshop'.\t\t\e[0m"
+print "\e[1;33mAdding new user - 'roboshop'.\t\t\e[0m"
 id roboshop &>>/tmp/log
 if [ $? -eq 0 ];
     then
