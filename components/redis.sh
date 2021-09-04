@@ -22,4 +22,5 @@ status_check $?
 systemctl start redis
 systemctl enable redis &>>/tmp/log
 
+
 echo -e  "\e[1;35mRedis Component is ready to use.\e[0m"
