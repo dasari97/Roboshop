@@ -10,12 +10,12 @@ status_check $?
 print "\e[1;33mLet's now set up the catalogue application.\e[0m"
 
 print "\e[1;35m\nAdding new user - 'roboshop' .\e[0m"
-
-if [ id roboshop -eq 0 ];
+id roboshop &>>/tmp/log
+if [ $? -eq 0 ];
     then
         echo -e "\e[1;33mUser roboshop already exist.\e[0m "  &>>/tmp/log
     else    
-        useradd roboshop
+        useradd roboshop &>>/tmp/log
 fi
 status_check $?
 
