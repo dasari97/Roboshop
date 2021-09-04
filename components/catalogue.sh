@@ -2,37 +2,43 @@
 
 source components/common.sh
 
-print "\e[1;35mThis service is written in NodeJS, Hence need to install NodeJS in the system.\e[0m"
+print "\e[1;35mInstalling Nodejs.\e[0m"
 
 yum install nodejs make gcc-c++ -y &>>/tmp/log
 status_check $?
 
 print "\e[1;35mLet's now set up the catalogue application.\e[0m"
 
+print "\e[1;35mAdding new user - 'roboshop' .\e[0m"
 
-useradd roboshop
+if [ id roboshop -eq 0 ];
+    then
+        echo -e "\e[1;33mUser roboshop already exist.\e[0m "  &>>/tmp/log
+    else    
+        useradd roboshop
+fi
 status_check $?
 
-sudo su - roboshop
-status_check $?
-
+print "\e[1;35mDownloading catalogue zip file.\e[0m"
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>/tmp/log
 status_check $?
 
 cd /home/roboshop
-
-unzip /tmp/catalogue.zip &>>/tmp/log
+rm -rf catalogue && unzip /tmp/catalogue.zip &>>/tmp/log && mv catalogue-main catalogue
 status_check $?
 
-mv catalogue-main catalogue
-cd /home/roboshop/catalogue
+print "\e[1;35mDownloading Dependency Files for catalogue.\e[0m"
+npm install --unsafe-perm &>>/tmp/log
+status_check $?
 
-npm install 
+chown roboshop:roboshop -R /home/roboshop
 
-#NOTE: We need to update the IP address of MONGODB Server in systemd.service file
-#Now, lets set up the service with systemctl.
+print "\e[1;35mUpdating systemd.service file.\e[0m"
+sed -i -e 's/MONGO_DNSNAME/' /home/roboshop/catalogue/systemd.service
+status_check $?
 
-# mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
-# systemctl daemon-reload
-# systemctl start catalogue
-# systemctl enable catalogue
+print "\e[1;35mEnabling Catalogue Component.\e[0m"
+mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service && systemctl daemon-reload && systemctl restart catalogue &&  systemctl enable catalogue &>>/tmp/log
+status_check $?
+
+print "\e[1;35mCatalogue Component is ready to use.\e[0m"
