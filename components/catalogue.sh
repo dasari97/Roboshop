@@ -25,7 +25,7 @@ status_check $?
 
 print "\e[1;33mExtracting Catalogue.\t\t\t\e[0m"
 cd /home/roboshop
-rm -rf catalogue && unzip /tmp/catalogue.zip &>>/tmp/log && mv catalogue-main catalogue
+rm -rf catalogue && unzip -o /tmp/catalogue.zip &>>/tmp/log && mv catalogue-main catalogue
 status_check $?
 
 print "\e[1;33mLoading Dependency  for catalogue.\t\e[0m"
