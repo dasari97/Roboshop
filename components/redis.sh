@@ -16,7 +16,7 @@ status_check $?
 
 print "\e[1;33mConfiguring Redis Component\t\e[0m"
 sed -i -e '75 c bind 0.0.0.0 -::1' /etc/redis.conf  &>>/tmp/log
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf  &>>/tmp/log
+sed -i -e '75 c bind 0.0.0.0 -::1' /etc/redis/redis.conf  &>>/tmp/log
 status_check $?
 
 systemctl start redis
