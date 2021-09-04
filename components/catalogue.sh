@@ -34,7 +34,7 @@ status_check $?
 chown roboshop:roboshop -R /home/roboshop
 
 print "\e[1;35mUpdating systemd.service file.\e[0m"
-sed -i -e 's/MONGO_DNSNAME/' /home/roboshop/catalogue/systemd.service
+sed -i -e 's/MONGO_DNSNAME/mongo.krishna.roboshop/' /home/roboshop/catalogue/systemd.service
 status_check $?
 
 print "\e[1;35mEnabling Catalogue Component.\e[0m"
