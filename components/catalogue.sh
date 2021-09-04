@@ -7,9 +7,9 @@ print "\e[1;35mInstalling Nodejs.\e[0m"
 yum install nodejs make gcc-c++ -y &>>/tmp/log
 status_check $?
 
-print "\e[1;35mLet's now set up the catalogue application.\e[0m"
+print "\e[1;33mLet's now set up the catalogue application.\e[0m"
 
-print "\e[1;35mAdding new user - 'roboshop' .\e[0m"
+print "\e[1;35m\nAdding new user - 'roboshop' .\e[0m"
 
 if [ id roboshop -eq 0 ];
     then
@@ -27,7 +27,7 @@ cd /home/roboshop
 rm -rf catalogue && unzip /tmp/catalogue.zip &>>/tmp/log && mv catalogue-main catalogue
 status_check $?
 
-print "\e[1;35mDownloading Dependency Files for catalogue.\e[0m"
+print "\e[1;35mLoading Dependency  for catalogue.\e[0m"
 npm install --unsafe-perm &>>/tmp/log
 status_check $?
 
