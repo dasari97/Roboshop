@@ -3,12 +3,12 @@
 source components/common.sh
 
 print "\e[1;33mInstalling YUM Utilitties\e[0m"
-yum install epel-release yum-utils -y &>>/tmp/log
+yum install epel-release yum-utils http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y &>>/tmp/log
 status_check $?
 
-print "\e[1;33mInstalling Remi Repos\e[0m;"
-yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y &>>/tmp/log
-status_check $?
+#print "\e[1;33mInstalling Remi Repos\e[0m;"
+#yum install  -y &>>/tmp/log
+#status_check $?
 
 print "\e[1;mEnabling Remi\e[0m"
 yum-config-manager --enable remi &>>/tmp/log
