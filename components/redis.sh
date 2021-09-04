@@ -6,7 +6,7 @@ print "\e[1;33mInstalling YUM Utils and Remi Repos\e[0m"
 yum install epel-release yum-utils http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y &>>/tmp/log
 status_check $?
 
-print "\e[1;33mEnabling Remi\t\t\e[0m"
+print "\e[1;33mEnabling Remi\t\t\t\e[0m"
 yum-config-manager --enable remi &>>/tmp/log
 status_check $?
 
