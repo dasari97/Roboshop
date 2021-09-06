@@ -3,7 +3,7 @@
             "Changes": [{
             "Action": "CREATE",
                         "ResourceRecordSet": {
-                                    "Name": "instance_name.krishna.roboshop",
+                                    "Name": "INSTANCE_NAME.krishna.roboshop",
                                     "Type": "A",
                                     "TTL": 300,
                                  "ResourceRecords": [{ "Value": "instance_ip"}]
