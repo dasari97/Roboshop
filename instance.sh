@@ -5,24 +5,24 @@ VLID=1
 
 instance_name=$1
 
-if [ -z '${instance_name}' ];
+if [ -z "${instance_name}" ];
     then
         echo -e "\e[1;33mFailed to provide Instance Name\e[0m"
         exit 1
         
 fi
 
-aws ec2 describe-instances --filters "Name=tag:Name,Values=Owner" | jq .Reservation[].Instance[].State.name | grep running &>/dev/null
+aws ec2 describe-instances --filters "Name=tag:Name,Values=$instance_name" | jq .Reservation[].Instance[].State.Name | grep running &>/dev/null
 if [ $? -eq 0 ];
     then 
-        echo -e "\e[1;33mInstance already exists\e[0m"
+        echo -e "\e[1;33mInstance : $instances already exists\e[0m"
         exit 1
 fi
 
-aws ec2 describe-instances --filters "Name=tag:Name,Values=Owner" | jq .Reservation[].Instance[].State.name | grep stopped &>/dev/null
+aws ec2 describe-instances --filters "Name=tag:Name,Values=$instance_name" | jq .Reservation[].Instance[].State.Name | grep stopped &>/dev/null
 if [ $? -eq 0 ];
     then 
-        echo -e "\e[1;33mInstance already exists\e[0m"
+        echo -e "\e[1;33mInstance : $instances already exists\e[0m"
         exit 1
 fi
 
