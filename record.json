@@ -6,6 +6,6 @@
                                     "Name": "INSTANCE_NAME.krishna.roboshop",
                                     "Type": "A",
                                     "TTL": 300,
-                                 "ResourceRecords": [{ "Value": "instance_ip"}]
+                                 "ResourceRecords": [{ "Value": "INSTANCE_IP"}]
 }}]
 }

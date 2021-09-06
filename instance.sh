@@ -1,7 +1,7 @@
 #!/bin/bash
 
 LID="lt-02a58e5505b68e560"
-LVER=2
+LVER=1
 INSTANCE_NAME=$1
 
 if [ -z "${INSTANCE_NAME}" ]; then
@@ -24,4 +24,4 @@ fi
 IP=$(aws ec2 run-instances --launch-template LaunchTemplateId=$LID,Version=$LVER --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=$INSTANCE_NAME}]" "ResourceType=instance,Tags=[{Key=Name,Value=$INSTANCE_NAME}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
 
 sed -e "s/INSTANCE_NAME/$INSTANCE_NAME/" -e "s/INSTANCE_IP/$IP/" record.json >/tmp/record.json
-aws route53 change-resource-record-sets --hosted-zone-id Z06421191721I0AOBUGO2 --change-batch file:///tmp/record.json | jq
+aws route53 change-resource-record-sets --hosted-zone-id Z06986272M4T56TOB7K70 --change-batch file:///tmp/record.json | jq
