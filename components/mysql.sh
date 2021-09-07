@@ -3,7 +3,7 @@
 
 source components/common.sh
 
-print "Setting MYSQL Repo\t\t"
+print "Setting MYSQL Repos.\t\t"
 echo '[mysql57-community]
 name=MySQL 5.7 Community Server
 baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
@@ -20,17 +20,36 @@ print "Start MySQL service.\t\t"
 systemctl enable mysqld &>>/tmp/log && systemctl start mysqld &>>/tmp/log && systemctl restart mysqld &>>/tmp/log
 status_check $?
 
-exit
 
-Now a default root password will be generated and given in the log file.
-# grep temp /var/log/mysqld.log
+default_pass=$(grep 'A temporary password'/var/log/mysqld.log | awk '{print $NF}')
 
-Next, We need to change the default root password in order to start using the database service.
-# mysql_secure_installation
+print "Resetting Default password.\t"
+echo 'show databases' | mysql -uroot -pRoboshop@1 &>>/tmp/log
+if [ $? -eq 0 ];
+    then 
+        echo "Root password reset already done." &>>/tmp/log 
+    else 
+        echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1';" >/tmp/reset.sql
+        mysql --connect-expired-password -uroot -p"${default_pass}" </tmp/reset.sql &>>/tmp/log
+        status_check $?
+fi
 
-You can check the new password working or not using the following command.
+print "Uninstal Password Validate Plugin.\t"
+echo "uninstall plugin validate_password;" >/tmp/pass.sql
+mysql -uroot -p"Roboshop@1" </tmp/pass.sql &>>/tmp/log
+status_check $?
 
-# mysql -u root -p
 
-Run the following SQL commands to remove the password policy.
-> uninstall plugin validate_password;
+Print "Downloading Schema.\t\t"
+curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip" &>>/tmp/log
+status_check $?
+
+print "Extract schema file.\t\t"
+cd /tmp &&  unzip -o mysql.zip &>>/tmp/log && cd mysql-main &>>/tmp/log
+status_check $?
+
+print "Load the schema for Services.\t"
+mysql -uroot -pRoboShop@1 <shipping.sql &>>/tmp/log
+status_check $?
+
+echo -e "\e[1;33mMysql component is ready to use.\e[0m"
