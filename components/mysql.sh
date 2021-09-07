@@ -11,13 +11,13 @@ enabled=1
 gpgcheck=0' > /etc/yum.repos.d/mysql.repo
 status_check $?
 
-print "Install MySQL \t\t"
+print "Install MySQL \t\t\t"
 yum remove mariadb-libs -y &>>/tmp/log && yum install mysql-community-server -y &>>/tmp/log
 status_check $?
 
 
 print "Start MySQL service.\t\t"
-systemctl enable mysqld &>>/tmp/log && systemctl start mysqld &>>/tmp && systemctl restart mysqld &>>/tmp/log
+systemctl enable mysqld &>>/tmp/log && systemctl start mysqld &>>/tmp/log && systemctl restart mysqld &>>/tmp/log
 exit
 
 Now a default root password will be generated and given in the log file.
