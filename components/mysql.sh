@@ -41,7 +41,7 @@ mysql -uroot -p"Roboshop@1" </tmp/pass.sql &>>/tmp/log
 status_check $?
 
 
-Print "Downloading Schema.\t\t"
+echo -e "Downloading Schema.\t\t"
 curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip" &>>/tmp/log
 status_check $?
 
