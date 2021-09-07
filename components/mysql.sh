@@ -32,14 +32,20 @@ if [ $? -eq 0 ];
     else 
         echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1';" >/tmp/reset.sql
         mysql --connect-expired-password -uroot -p"${default_pass}" </tmp/reset.sql &>>/tmp/log
-        status_check $?
+        
 fi
-
-print "Uninstal Password Validate Plugin.\t"
-echo "uninstall plugin validate_password;" >/tmp/pass.sql
-mysql -u root -p"Roboshop@1" </tmp/pass.sql &>>/tmp/log
 status_check $?
 
+print "Uninstal Password Validate Plugin.\t"
+echo 'show plugins;' | mysql -u root -pRoboshop@1 | grep -i validate_password &>>/tmp/log
+if [ $? -eq 0 ];
+    then
+        echo "Validate Password pulgin already remove" &>>/tmp/log
+    else 
+    echo "uninstall plugin validate_password;" >/tmp/pass.sql
+    mysql -u root -p"Roboshop@1" </tmp/pass.sql &>>/tmp/log
+    status_check $?
+fi 
 
 print "Downloading Schema.\t\t"
 curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip" &>>/tmp/log
