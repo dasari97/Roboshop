@@ -42,3 +42,6 @@ payment:
 frontend:
 	## frontend
 	@bash components/frontend.sh
+	
+USER:
+	@bash components/USER.sh
