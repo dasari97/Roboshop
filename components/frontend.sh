@@ -2,21 +2,27 @@
 
 source components/common.sh
 
-print "\e[1;33mInstall Nginx.\e[0m"
+print "\e[1;33mInstall Nginx.\t\e[0m"
 yum install nginx -y &>>/tmp/log
 status_check $?
 
-print "\e[1;33mLet's download the HTDOCS content and deploy under the Nginx path.\e[0m"
+print "\e[1;33mDownloading Nginx\t\t\e[0m"
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>/tmp/log
 status_check $?
 
-print "\e[1;33mDeploy in Nginx Default Location.\e[0m"
-rm -rf /usr/share/nginx/* && cd /usr/share/nginx/html && unzip -o /tmp/frontend.zip &>>/tmp/log && mv frontend-main/* . && mv static/* . &&  mv localhost.conf /etc/nginx/default.d/roboshop.conf
+print "\e[1;33mExtracting Nginx\t\t.\e[0m"
+rm -rf /usr/share/nginx/* && cd /usr/share/nginx/html && unzip -o /tmp/frontend.zip &>>/tmp/log && mv frontend-main/* . &>>/tmp/log && mv static html &>>/tmp/log
 status_check $?
 
-sed -i -e '/'
+print "\e[1;33mDeploy in Nginx Default Location.\e[0m"
+mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>/tmp/log
+status_check $?
 
-print "\e[1;33mEnabling Nginx.\e[0m"
+print "\e[1;33mConfiguring Nginx.\t\t\e[0m"
+sed -i -e '/catalogue/ /s/localhost/catalogue.krishna.roboshop/' /etc/nginx/default.d/roboshop.conf &>>/tmp/log
+status_check $?
+
+print "\e[1;33mEnabling Nginx.\t\t\e[0m"
 systemctl start nginx &>>/tmp/log && systemctl enable nginx &>>/tmp/log && systemctl restart nginx &>>/tmp/log
 status_check $?
 
