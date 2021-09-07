@@ -15,6 +15,7 @@ print() {
      echo -n -e " $1\t -  "
 }
 
+
 if [ $UID -ne 0 ];
     then 
             echo -e "\e[1;31mPremission deined. Need to be a ROOT user to execute this command"
@@ -36,13 +37,10 @@ ADD_USER() {
     }
 
 DOWNLOAD() {
-    print "\e[1;33mDownloading ${component} zip file.\t\e[0m"
+    print "Downloading ${component} content"
     curl -s -L -o /tmp/${component}.zip "https://github.com/roboshop-devops-project/${component}/archive/main.zip" &>>/tmp/log
     status_check $?
-    }
-
-EXTRACT() {
-    print "\e[1;33mExtracting ${component}.\t\t\t\e[0m"
+    print "Extracting ${component}\t\t\t"
     cd /home/roboshop
     rm -rf ${component} && unzip -o /tmp/${component}.zip &>>/tmp/log && mv ${component}-main ${component}
     status_check $?
@@ -50,11 +48,11 @@ EXTRACT() {
     
 SYSTEMD_SETUP() {
     print "\e[1;33mUpdating systemd.service file.\t\t\e[0m"
-    sed -i -e 's/MONGO_DNSNAME/mongodb.krishna.roboshop/' /home/roboshop/${component}/systemd.service
+    sed -i -e 's/MONGO_DNSNAME/mongodb.krishna.roboshop/' -e 's/REDIS_ENDPOINT/redis.krishna.roboshop/' -e 's/MONGO_ENDPOINT/mongodb.krishna.roboshop/' -e 's/CATALOGUE_ENDPOINT/catalogue.krishna.roboshop/' /home/roboshop/${component}/systemd.service
     status_check $?
 
-    print "\e[1;33mEnabling ${component} Component.\t\t\e[0m"
-    mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service && systemctl daemon-reload && systemctl restart ${component} &&  systemctl enable ${component} &>>/tmp/log
+    print "Setup SystemD services\t\t"
+    mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service && systemctl daemon-reload && systemctl restart ${component} &>>/tmp/log &&  systemctl enable ${component} &>>/tmp/log
     status_check $?
 
     echo -e "\e[1;35m${component} Component is ready to use.\n\e[0m"
@@ -66,7 +64,7 @@ NODEJS() {
     yum install nodejs make gcc-c++ -y &>>/tmp/log
     status_check $?
 
-    echo -e "\e[1;35mLet's now set up the ${component} application.\e[0m"
+    echo -e "Let's now set up the ${component} application."
 
     ADD_USER
     
@@ -74,7 +72,7 @@ NODEJS() {
 
     EXTRACT
 
-    print "\e[1;33mLoading Dependency  for ${component}.\t\e[0m"
+    print "Loading Dependency  for ${component} .\t"
     cd /home/roboshop/${component}
     npm install --unsafe-perm &>>/tmp/log
     status_check $?
