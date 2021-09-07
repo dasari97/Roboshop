@@ -58,7 +58,7 @@ status_check $?
 
 print "Load the schema for Services.\t"
 cd mysql-main
-mysql -u root -pRoboShop@1 <shipping.sql &>>$LOG
+mysql -u root -pRoboShop@1 <shipping.sql &>>$/tmp/log
 status_check $?
 
 echo -e "\e[1;33mMysql component is ready to use.\e[0m"
