@@ -11,7 +11,7 @@ curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/fron
 status_check $?
 
 print "\e[1;33mExtracting Nginx\t\t.\e[0m"
-rm -rf /usr/share/nginx/* && cd /usr/share/nginx/html && unzip -o /tmp/frontend.zip &>>/tmp/log && mv frontend-main/* . &>>/tmp/log && mv static html &>>/tmp/log
+rm -rf /usr/share/nginx/* && cd /usr/share/nginx/ && unzip -o /tmp/frontend.zip &>>/tmp/log && mv frontend-main/* . &>>/tmp/log && mv static html &>>/tmp/log
 status_check $?
 
 print "\e[1;33mDeploy in Nginx Default Location.\e[0m"
