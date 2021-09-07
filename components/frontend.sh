@@ -26,4 +26,4 @@ print "\e[1;33mEnabling Nginx.\t\t\e[0m"
 systemctl start nginx &>>/tmp/log && systemctl enable nginx &>>/tmp/log && systemctl restart nginx &>>/tmp/log
 status_check $?
 
-echo "\e[1;32mFrontend component is ready to use.\e[0m"
+echo -e "\e[1;32mFrontend component is ready to use.\e[0m"
