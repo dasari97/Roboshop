@@ -15,10 +15,6 @@ redis:
 	## redis
 	@bash components/redis.sh
 
-user:
-	 ## user
-	@bash components/user.sh
-
 cart:
 	## cart
 	@bash components/cart.sh
@@ -43,5 +39,5 @@ frontend:
 	## frontend
 	@bash components/frontend.sh
 	
-USER:
-	@bash components/USER.sh
+user:
+	@bash components/user.sh

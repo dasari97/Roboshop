@@ -25,7 +25,7 @@ fi
 rm -rf /tmp/log
 
 ADD_USER() {
-    print "\e[1;33mAdding new user - 'roboshop'.\t\t\e[0m"
+    print "Adding new user - 'roboshop'.\t\t"
     id roboshop &>>/tmp/log
     if [ $? -eq 0 ];
        then
@@ -47,7 +47,7 @@ DOWNLOAD() {
     }
     
 SYSTEMD_SETUP() {
-    print "\e[1;33mUpdating systemd.service file.\t\t\e[0m"
+    print "Updating systemd.service file.\t\t"
     sed -i -e 's/MONGO_DNSNAME/mongodb.krishna.roboshop/' -e 's/REDIS_ENDPOINT/redis.krishna.roboshop/' -e 's/MONGO_ENDPOINT/mongodb.krishna.roboshop/' -e 's/CATALOGUE_ENDPOINT/catalogue.krishna.roboshop/' /home/roboshop/${component}/systemd.service
     status_check $?
 
@@ -59,7 +59,7 @@ SYSTEMD_SETUP() {
     }
     
 NODEJS() {
-    print "\e[1;33mInstalling Nodejs.\t\t\t\e[0m"
+    print "Installing Nodejs.\t\t\t"
 
     yum install nodejs make gcc-c++ -y &>>/tmp/log
     status_check $?
