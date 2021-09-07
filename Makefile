@@ -16,7 +16,7 @@ redis:
 	@bash components/redis.sh
 
 user:
-	## user
+	 ## user
 	@bash components/user.sh
 
 cart:
