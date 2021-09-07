@@ -2,7 +2,7 @@
 
 source components/common.sh
 
-print "\e[1;33mInstall Nginx.\t\e[0m"
+print "\e[1;33mInstall Nginx.\t\t\t\e[0m"
 yum install nginx -y &>>/tmp/log
 status_check $?
 
@@ -19,7 +19,7 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>/tmp/log
 status_check $?
 
 print "\e[1;33mConfiguring Nginx.\t\t\e[0m"
-sed -i -e '/catalogue/ /s/localhost/catalogue.krishna.roboshop/' /etc/nginx/default.d/roboshop.conf &>>/tmp/log
+sed -i -e '/catalogue/ s/localhost/catalogue.krishna.roboshop/' /etc/nginx/default.d/roboshop.conf &>>/tmp/log
 status_check $?
 
 print "\e[1;33mEnabling Nginx.\t\t\e[0m"
