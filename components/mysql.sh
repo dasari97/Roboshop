@@ -25,23 +25,23 @@ default_pass=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF
 
 
 print "Resetting Default password.\t"
-echo 'show databases' | mysql -u root -pRoboshop@1 &>>/tmp/log
+echo 'show databases' | mysql -u root -pRoboShop@1 &>>/tmp/log
 if [ $? -eq 0 ];
     then 
         echo "Root password reset already done." &>>/tmp/log 
     else 
-        echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1';" >/tmp/reset.sql
+        echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" >/tmp/reset.sql
         mysql --connect-expired-password -uroot -p"${default_pass}" </tmp/reset.sql &>>/tmp/log
         
 fi
 status_check $?
 
 print "Uninstall Password Validate Plugin."
-echo 'show plugins;' | mysql -u root -pRoboshop@1 2>/dev/null | grep -i validate_password &>>/tmp/log
+echo 'show plugins;' | mysql -u root -pRoboShop@1 2>/dev/null | grep -i validate_password &>>/tmp/log
 if [ $? -eq 0 ];
     then
         echo "uninstall plugin validate_password;" >/tmp/pass.sql
-        mysql -u root -p"Roboshop@1" </tmp/pass.sql &>>/tmp/log
+        mysql -u root -p"RoboShop@1" </tmp/pass.sql &>>/tmp/log
         
     else 
         echo "Validate Password pulgin already remove" &>>/tmp/log
@@ -58,7 +58,7 @@ status_check $?
 
 print "Load the schema for Services.\t"
 cd mysql-main
-mysql -u root -pRoboShop@1 <shipping.sql &>>/tmp/log
-status_check $?
+mysql -u root -pRoboShop@1 <shipping.sql &>>$LOG
+Status_Check $?
 
 echo -e "\e[1;33mMysql component is ready to use.\e[0m"
