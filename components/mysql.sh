@@ -40,7 +40,7 @@ print "Uninstall Password Validate Plugin."
 echo 'show plugins;' | mysql -u root -pRoboshop@1 | grep -i validate_password &>>/tmp/log
 if [ $? -eq 0 ];
     then
-        echo "uninstall plugin validate_password;" >/tmp/pass.sql
+        echo "uninstall plugin validate_password;" &>/tmp/pass.sql
         mysql -u root -p"Roboshop@1" </tmp/pass.sql &>>/tmp/log
         
     else 
