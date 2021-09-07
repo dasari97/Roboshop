@@ -21,9 +21,7 @@ systemctl enable mysqld &>>/tmp/log && systemctl start mysqld &>>/tmp/log && sys
 status_check $?
 
 
-default_pass=$(grep 'A temporary password'/var/log/mysqld.log | awk '{print $NF}')
-
-exit
+default_pass=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
 
 
 print "Resetting Default password.\t"
