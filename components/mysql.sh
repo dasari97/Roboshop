@@ -37,10 +37,10 @@ fi
 status_check $?
 
 print "Uninstall Password Validate Plugin."
-echo 'show plugins;' | mysql -u root -pRoboshop@1 | grep -i validate_password &>>/tmp/log
+echo 'show plugins;' | mysql -u root -pRoboshop@1 2>/dev/null | grep -i validate_password &>>/tmp/log
 if [ $? -eq 0 ];
     then
-        echo "uninstall plugin validate_password;" &>/tmp/pass.sql
+        echo "uninstall plugin validate_password;" >/tmp/pass.sql
         mysql -u root -p"Roboshop@1" </tmp/pass.sql &>>/tmp/log
         
     else 
@@ -53,10 +53,11 @@ curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/a
 status_check $?
 
 print "Extract schema file.\t\t"
-cd /tmp &&  unzip -o mysql.zip &>>/tmp/log && cd mysql-main &>>/tmp/log
+cd /tmp &&  unzip -o mysql.zip &>>/tmp/log
 status_check $?
 
 print "Load the schema for Services.\t"
+cd mysql-main
 mysql -u root -pRoboShop@1 <shipping.sql &>>/tmp/log
 status_check $?
 
