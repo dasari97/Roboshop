@@ -71,7 +71,7 @@ NODEJS() {
     DOWNLOAD
 
 
-    print "Loading Dependency  for ${component} .\t"
+    print "Loading Dependency  for ${component}.\t\t"
     cd /home/roboshop/${component}
     npm install --unsafe-perm &>>/tmp/log
     status_check $?
