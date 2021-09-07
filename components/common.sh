@@ -37,7 +37,7 @@ ADD_USER() {
     }
 
 DOWNLOAD() {
-    print "Downloading ${component} content"
+    print "Downloading ${component} content \t\t"
     curl -s -L -o /tmp/${component}.zip "https://github.com/roboshop-devops-project/${component}/archive/main.zip" &>>/tmp/log
     status_check $?
     print "Extracting ${component}\t\t\t"
@@ -51,7 +51,7 @@ SYSTEMD_SETUP() {
     sed -i -e 's/MONGO_DNSNAME/mongodb.krishna.roboshop/' -e 's/REDIS_ENDPOINT/redis.krishna.roboshop/' -e 's/MONGO_ENDPOINT/mongodb.krishna.roboshop/' -e 's/CATALOGUE_ENDPOINT/catalogue.krishna.roboshop/' /home/roboshop/${component}/systemd.service
     status_check $?
 
-    print "Setup SystemD services\t\t"
+    print "Setup SystemD services\t\t\t"
     mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service && systemctl daemon-reload && systemctl restart ${component} &>>/tmp/log &&  systemctl enable ${component} &>>/tmp/log
     status_check $?
 
@@ -70,7 +70,6 @@ NODEJS() {
     
     DOWNLOAD
 
-    EXTRACT
 
     print "Loading Dependency  for ${component} .\t"
     cd /home/roboshop/${component}
