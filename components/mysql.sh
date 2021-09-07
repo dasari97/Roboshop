@@ -25,7 +25,7 @@ default_pass=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF
 
 
 print "Resetting Default password.\t"
-echo 'show databases' | mysql -uroot -pRoboshop@1 &>>/tmp/log
+echo 'show databases' | mysql -u root -pRoboshop@1 &>>/tmp/log
 if [ $? -eq 0 ];
     then 
         echo "Root password reset already done." &>>/tmp/log 
@@ -37,11 +37,11 @@ fi
 
 print "Uninstal Password Validate Plugin.\t"
 echo "uninstall plugin validate_password;" >/tmp/pass.sql
-mysql -uroot -p"Roboshop@1" </tmp/pass.sql &>>/tmp/log
+mysql -u root -p"Roboshop@1" </tmp/pass.sql &>>/tmp/log
 status_check $?
 
 
-echo -e "Downloading Schema.\t\t"
+print "Downloading Schema.\t\t"
 curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip" &>>/tmp/log
 status_check $?
 
@@ -50,7 +50,7 @@ cd /tmp &&  unzip -o mysql.zip &>>/tmp/log && cd mysql-main &>>/tmp/log
 status_check $?
 
 print "Load the schema for Services.\t"
-mysql -uroot -pRoboShop@1 <shipping.sql &>>/tmp/log
+mysql -u root -pRoboShop@1 <shipping.sql &>>/tmp/log
 status_check $?
 
 echo -e "\e[1;33mMysql component is ready to use.\e[0m"
