@@ -23,6 +23,9 @@ status_check $?
 
 default_pass=$(grep 'A temporary password'/var/log/mysqld.log | awk '{print $NF}')
 
+exit
+
+
 print "Resetting Default password.\t"
 echo 'show databases' | mysql -uroot -pRoboshop@1 &>>/tmp/log
 if [ $? -eq 0 ];
