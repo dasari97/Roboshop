@@ -4,11 +4,14 @@ source components/common.sh
 
 component=shipping
 
+echo -e "\e[1;33mSetting Up shipping component\e[0m"
+
 print "Install Maven and Java.\t\t"
 yum install maven -y &>>/tmp/log
 status_check $?
 
 ADD_USER
+
 
 exit
 
