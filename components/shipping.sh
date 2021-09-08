@@ -8,7 +8,6 @@ print "Install Maven and Java.\t\t"
 yum install maven -y &>>/tmp/log
 status_check $?
 
-print "Create roboshop user.\t\t"
 ADD_USER
 
 exit
