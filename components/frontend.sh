@@ -19,7 +19,7 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>/tmp/log
 status_check $?
 
 print "\e[1;33mConfiguring Nginx.\t\t\e[0m"
-sed -i -e '/catalogue/ s/localhost/catalogue.krishna.roboshop/' -e '/user/ s/localhost/user.krishna.roboshop/' -e '/cart/ s/localhost/cart.krishna.roboshop/' /etc/nginx/default.d/roboshop.conf &>>/tmp/log
+sed -i -e '/catalogue/ s/localhost/catalogue.krishna.roboshop/' -e '/user/ s/localhost/user.krishna.roboshop/' -e '/cart/ s/localhost/cart.krishna.roboshop/' -e '/shipping/ s/localhost/shipping.krishna.roboshop/' /etc/nginx/default.d/roboshop.conf &>>/tmp/log
 status_check $?
 
 print "\e[1;33mEnabling Nginx.\t\t\e[0m"
