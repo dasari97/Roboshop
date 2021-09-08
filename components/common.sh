@@ -54,7 +54,7 @@ SYSTEMD_SETUP() {
     status_check $?
 
     print "Setup SystemD services\t\t\t"
-    mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service && systemctl daemon-reload && systemctl restart ${component} &>>/tmp/log &&  systemctl enable ${component} &>>/tmp/log
+    mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service && systemctl daemon-reload && systemctl start ${component} &>>/tmp/log &&  systemctl enable ${component} &>>/tmp/log && systemctl restart ${component} &>>/tmp/log
     status_check $?
 
     echo -e "\e[1;35m${component} Component is ready to use.\n\e[0m"
