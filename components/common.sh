@@ -30,11 +30,13 @@ ADD_USER() {
     if [ $? -eq 0 ];
        then
          echo -e "\e[1;31mUser roboshop already exist.\e[0m "  &>>/tmp/log
+         status_check $?
      else    
          useradd roboshop &>>/tmp/log
+         status_check $?
     fi
     }
-    status_check $?
+    
 
 DOWNLOAD() {
     print "Downloading ${component} content \t\t"
