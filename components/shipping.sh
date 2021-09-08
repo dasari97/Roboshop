@@ -16,6 +16,8 @@ DOWNLOAD
 
 cd shipping &>>/tmp/log && mvn clean package &>>/tmp/log && mv target/shipping-1.0.jar shipping.jar &>>/tmp/log
 
+chown roboshop:roboshop -R /home/roboshop
+
 exit
 
 
