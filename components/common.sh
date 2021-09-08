@@ -33,8 +33,8 @@ ADD_USER() {
      else    
          useradd roboshop &>>/tmp/log
     fi
-    status_check $?
     }
+    status_check $?
 
 DOWNLOAD() {
     print "Downloading ${component} content \t\t"
