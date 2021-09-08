@@ -12,6 +12,15 @@ status_check $?
 
 ADD_USER
 
+DOWNLOAD
+
+cd shipping &>>/tmp/log && mvn clean package &>>/tmp/log && mv target/shipping-1.0.jar shipping.jar &>>/tmp/log
+
+exit
+
+
+SYSTEMD_SETUP
+
 
 exit
 
