@@ -21,15 +21,3 @@ chown roboshop:roboshop -R /home/roboshop
 
 
 SYSTEMD_SETUP
-
-
-exit
-
-
-
-Copy the service file and start the service.
-
-# mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service
-# systemctl daemon-reload
-# systemctl start shipping 
-# systemctl enable shipping
