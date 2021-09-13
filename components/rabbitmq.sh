@@ -2,7 +2,7 @@
 
 source components/common.sh
 
-echo "\e[1;33mSetting Up RabbitMQ Database\e[0m"
+echo -e "\e[1;33mSetting Up RabbitMQ Database\e[0m"
 
 print "Installing Erlang.\t\t"
 yum list installed | grep erlang
