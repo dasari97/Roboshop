@@ -50,7 +50,7 @@ DOWNLOAD() {
     
 SYSTEMD_SETUP() {
     print "Updating systemd.service file.\t\t"
-    sed -i -e 's/MONGO_DNSNAME/mongodb.krishna.roboshop/' -e 's/REDIS_ENDPOINT/redis.krishna.roboshop/' -e 's/MONGO_ENDPOINT/mongodb.krishna.roboshop/' -e 's/CATALOGUE_ENDPOINT/catalogue.krishna.roboshop/' -e 's/CARTENDPOINT/cart.krishna.roboshop/' -e 's/DBHOST/mysql.krishna.roboshop/' -e 's/CARTHOST/cart.roboshop.internal/' -e 's/USERHOST/user.roboshop.internal/' -e 's/AMQPHOST/rabbitmq.roboshop.internal/' /home/roboshop/${component}/systemd.service
+    sed -i -e 's/MONGO_DNSNAME/mongodb.krishna.roboshop/' -e 's/REDIS_ENDPOINT/redis.krishna.roboshop/' -e 's/MONGO_ENDPOINT/mongodb.krishna.roboshop/' -e 's/CATALOGUE_ENDPOINT/catalogue.krishna.roboshop/' -e 's/CARTENDPOINT/cart.krishna.roboshop/' -e 's/DBHOST/mysql.krishna.roboshop/' -e 's/CARTHOST/cart.krishna.roboshop/' -e 's/USERHOST/user.krishna.roboshop/' -e 's/AMQPHOST/rabbitmq.krishna.roboshop/' /home/roboshop/${component}/systemd.service
     status_check $?
 
     print "Setup SystemD services\t\t\t"
