@@ -1,16 +1,5 @@
 #!/bin/bash
 
-status_check() {
-    if [ $1 -eq 0 ];
-        then
-            echo -e "\e[1;32mSUCCESS\e[0m"
-        else
-            echo -e "\e[1;31mFAILURE\e[0m"
-            echo -e "Reffer /tmp/log file once"
-            exit 2
-    fi
-}
-
 if [ $UID -ne 0 ];
     then
         echo -e "\e[1;31mPermission denied. Need to be a root user to perform this command\e[0m"
