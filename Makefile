@@ -27,10 +27,6 @@ shipping:
 ## shipping
 	@bash components/shipping.sh
 
-rabbitmq:	
-## rabbitmq
-	@bash components/rabbitmq.sh
-
 payment:	
 ## payment
 	@bash components/payment.sh
@@ -42,3 +38,7 @@ frontend:
 user:	
 ##user
 	@bash components/user.sh
+	
+rabbitmq:
+##rabbitmq
+	@bash components/Rabbitmq.sh
