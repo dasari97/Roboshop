@@ -2,7 +2,7 @@
 
 echo -e  "installing Erlang.\t\t"
 yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm -y &>>/tmp/log
-status_check $?
+
 
 exit
 
