@@ -52,4 +52,4 @@ mongo < users.js &>>/tmp/log
 status_check $?
 
 
-echo -e \n "\e[1;33mMongodb setup is done. Ready to use\t\e[0m"
+echo -e  "\e[1;33mMongodb setup is done. Ready to use\t\e[0m"
