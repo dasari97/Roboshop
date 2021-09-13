@@ -1,5 +1,4 @@
 #!/bin/bash
-
 if [ $UID -ne 0 ];
     then
         echo -e "\e[1;31mPermission denied. Need to be a root user to perform this command\e[0m"
