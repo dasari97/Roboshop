@@ -1,8 +1,6 @@
 #!/bin/bash
-source components/common.sh
+echo hy
 
-component=catalogue
-echo $component
 exit
 
 ##NODEJS is a function from common.sh
