@@ -25,3 +25,4 @@ IP=$(aws ec2 run-instances --launch-template LaunchTemplateId=$LID,Version=$LVER
 
 sed -e "s/INSTANCE_NAME/$INSTANCE_NAME/" -e "s/INSTANCE_IP/$IP/" record.json >/tmp/record.json
 aws route53 change-resource-record-sets --hosted-zone-id Z06986272M4T56TOB7K70 --change-batch file:///tmp/record.json | jq
+
