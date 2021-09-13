@@ -11,20 +11,20 @@ print "Install ErLang\t"
   fi
 status_check $?
 
-print "Setup RabbitMQ Repos"
+echo -e "Setting RabbitMQ Repos"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash &>>/tmp/log
 status_check $?
 
 
-print "Install RabbitMQ"
+echo -e "Install RabbitMQ"
 yum install rabbitmq-server -y &>>/tmp/log
 status_check $?
 
-print  "Start RabbitMQ\t"
+echo -e "Start RabbitMQ\t"
 systemctl enable rabbitmq-server  &>>/tmp/log  && systemctl start rabbitmq-server &>>/tmp/log
 status_check $?
 
-print  "Create App user"
+echo -e "Create App user"
 rabbitmqctl list_users | grep roboshop &>>/tmp/log
 if [ $? -ne 0 ]; then
   rabbitmqctl add_user roboshop roboshop123 &>>/tmp/log
