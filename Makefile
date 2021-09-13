@@ -3,32 +3,42 @@
 help: ## Choose component to install
 	@fgrep -h "##" $(MAKEFILE_LIST) | grep -v fgrep
 
-catalogue:	## catalogue
+catalogue:	
+## catalogue
 	@bash components/catalogue.sh
 
-mongodb:	## mongodb
+mongodb:	
+## mongodb
 	@bash components/mongodb.sh
 
-redis:	## redis
+redis:	
+## redis
 	@bash components/redis.sh
 
-cart:	## cart
+cart:	
+## cart
 	@bash components/cart.sh
 
-mysql:	## mysql
+mysql:	
+## mysql
 	@bash components/mysql.sh
 
-shipping:	## shipping
+shipping:	
+## shipping
 	@bash components/shipping.sh
 
-rabbitmq:	## rabbitmq
+rabbitmq:	
+## rabbitmq
 	@bash components/rabbitmq.sh
 
-payment:	## payment
+payment:	
+## payment
 	@bash components/payment.sh
 
-frontend:	## frontend
+frontend:	
+## frontend
 	@bash components/frontend.sh
 	
-user:	##user
+user:	
+##user
 	@bash components/user.sh
