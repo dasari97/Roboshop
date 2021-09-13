@@ -19,16 +19,17 @@ if [ $? -eq 0 ];
 fi
 
    exit     
-Setup YUM repositories for RabbitMQ.
+#Setup YUM repositories for RabbitMQ.
 # curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
-Install RabbitMQ
+#Install RabbitMQ
 # yum install rabbitmq-server -y 
-Start RabbitMQ
+#Start RabbitMQ
 # systemctl enable rabbitmq-server 
 # systemctl start rabbitmq-server 
-RabbitMQ comes with a default username / password as guest/guest. But this user cannot be used to connect. Hence we need to create one user for the application.
 
-Create application user
+
+#Create application user
 # rabbitmqctl add_user roboshop roboshop123
 # rabbitmqctl set_user_tags roboshop administrator
 # rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+echo -e "RabbitMq setup is finished."
