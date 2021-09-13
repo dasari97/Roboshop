@@ -41,4 +41,4 @@ user:
 	
 rabbitmq:
 ##rabbitmq
-	@bash components/rabbitmq.sh
+	@bash components/Rabbitmq.sh
