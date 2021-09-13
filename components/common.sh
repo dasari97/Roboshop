@@ -85,7 +85,7 @@ NODEJS() {
     
 Python(){
     
-print "Install Python 3\t\t"
+print "Install Python 3\t\t\t"
 yum install python36 gcc python3-devel -y &>>/tmp/log
 status_check $?
 
@@ -93,14 +93,14 @@ ADD_USER
 
 DOWNLOAD
 
-print "Install the dependencies\t"
+print "Install the dependencies\t\t"
 cd /home/roboshop/payment && pip3 install -r requirements.txt &>>/tmp/log
 status_check $?
 
 USERID=$(id -u roboshop)
 GROUPID=$(id -g roboshop)
 
-print "updating the congif file.\t"
+print "updating the congif file.\t\t"
 sed -i -e "/uid/ c uid=${USERID}"  -e "/gid/ c gid=${GROUPID}" /home/roboshop/payment/payment.ini
 status_check $?
 
