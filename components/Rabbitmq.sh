@@ -9,37 +9,38 @@ status_check() {
             echo -e "Reffer /tmp/log file once"
             exit 2
     fi
-
-print() {
-    
-     echo -n -e " $1\t -  "
 }
-echo -e "Setting up rabbitmq."
-print "Install ErLang\t"
-  yum list installed | grep erlang &>>/tmp/log
-  if [ $? -eq 0 ]; then
-    echo "Erlang Already installed" &>>/tmp/log
-  else
-    yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm -y &>>/tmp/log
-  fi
-status_Check $?
 
-print "Setup RabbitMQ Repos"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash &>>/tmp/log
-status_Check $?
-
-print "Install RabbitMQ"
-yum install rabbitmq-server -y &>>/tmp/log
-status_Check $?
-
-print "Start RabbitMQ\t"
-systemctl enable rabbitmq-server  &>>/tmp/log  && systemctl start rabbitmq-server &>>/tmp/log
-status_Check $?
-
-print "Create App user"
-rabbitmqctl list_users | grep roboshop &>>/tmp/log
-if [ $? -ne 0 ]; then
-  rabbitmqctl add_user roboshop roboshop123 &>>/tmp/log
+if [ $UID -ne 0 ];
+    then
+        echo -e "\e[1;31mPermission denied. Need to be a root user to perform this command\e[0m"
+        exit 1
 fi
-rabbitmqctl set_user_tags roboshop administrator &>>/tmp/log && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>/tmp/log
-status_Check $?
+
+echo -e "Setting Up RabbitMQ."
+
+echo -e "Installing Erlang.\t\t"
+yum list installed | grep erlang &>>/tmp/log
+if [ $? -eq 0 ];
+    then
+        echo -e "Erlang is already installed." &>>/tmp/log
+        status_check $?
+    else
+        yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm -y &>>/tmp/log
+        status_check $?
+fi
+
+   exit     
+Setup YUM repositories for RabbitMQ.
+# curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
+Install RabbitMQ
+# yum install rabbitmq-server -y 
+Start RabbitMQ
+# systemctl enable rabbitmq-server 
+# systemctl start rabbitmq-server 
+RabbitMQ comes with a default username / password as guest/guest. But this user cannot be used to connect. Hence we need to create one user for the application.
+
+Create application user
+# rabbitmqctl add_user roboshop roboshop123
+# rabbitmqctl set_user_tags roboshop administrator
+# rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
