@@ -32,3 +32,5 @@ if [ $? -ne 0 ];
 fi
 rabbitmqctl set_user_tags roboshop administrator &>>/tmp/log && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>/tmp/log
 status_check $?
+
+echo -e "RabbitMq is ready to use."
