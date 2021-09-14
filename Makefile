@@ -38,7 +38,3 @@ frontend:
 user:	
 ##user
 	@bash components/user.sh
-	
-rabbitmq:
-##rabbitmq
-	@bash components/Rabbitmq.sh
