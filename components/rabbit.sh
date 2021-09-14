@@ -2,6 +2,8 @@
 
 source components/common.sh
 
+echo -e "Setting Up RabbitMQ server."
+
 print "Installing Erlang.\t\t"
 yum list installed | grep erlang &>>/tmp/log
 if [ $? -eq 0 ];
