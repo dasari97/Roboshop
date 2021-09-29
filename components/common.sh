@@ -44,7 +44,7 @@ print "Downloading and installing the public signing key"
 sudo rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch &>>/tmp/log
 status_check $?
 
-
+curl -s -L -o /etc/yum.repos.d/filebeat.repo "https://raw.githubusercontent.com/dasari97/Roboshop/main/filebeat.repos"
 
 }
 
