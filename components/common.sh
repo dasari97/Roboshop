@@ -44,15 +44,15 @@ print "Downloading and installing the public signing key"
 sudo rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch &>>/tmp/log
 status_check $?
 
-print "Creating Filebeat Repo."
+print "Creating Filebeat Repo.\t\t\t"
 curl -L -o /etc/yum.repos.d/filebeat.repo "https://raw.githubusercontent.com/dasari97/Roboshop/main/filebeat.repos" &>>/tmp/log
 status_check $?
 
-print "Installing Filebeat."
+print "Installing Filebeat.\t\t\t\t"
 yum install filebeat -y &>>/tmplog
 status_check $?
 
-print "Starting Filebeat."
+print "Starting Filebeat.\t\t\t\t"
 systemctl enable filebeat &>>/tmp/log && systemctl start filebeat &>>/tmp/log
 status_check $?
 
