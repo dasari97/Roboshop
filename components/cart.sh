@@ -6,3 +6,5 @@ component=cart
 
 ##NODEJS is a function from common.sh
 NODEJS
+
+Filebeat

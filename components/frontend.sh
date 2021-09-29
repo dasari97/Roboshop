@@ -27,3 +27,5 @@ systemctl start nginx &>>/tmp/log && systemctl enable nginx &>>/tmp/log && syste
 status_check $?
 
 echo -e "\e[1;32mFrontend component is ready to use.\e[0m"
+
+Filebeat

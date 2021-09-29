@@ -6,4 +6,5 @@ component=payment
 
 ##Python is a function from common.sh
 Python
-##python
+
+Filebeat
