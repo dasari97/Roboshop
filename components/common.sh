@@ -38,6 +38,15 @@ ADD_USER() {
     fi
     }
     
+Filebeat(){
+    
+print "Downloading and installing the public signing key"
+sudo rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch &>>/tmp/log
+status_check $?
+
+
+
+}
 
 DOWNLOAD() {
     print "Downloading ${component} content \t\t"
@@ -107,3 +116,4 @@ status_check $?
 
 SYSTEMD_SETUP
 }
+
