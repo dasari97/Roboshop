@@ -20,5 +20,7 @@ chown roboshop:roboshop -R /home/roboshop
 
 Filebeat
 
+Rsyslog
+
 SYSTEMD_SETUP
 

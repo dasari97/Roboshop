@@ -58,6 +58,17 @@ status_check $?
 
 }
 
+Rsyslog(){
+print "Setting Up Rsyslog config."
+curl -L -o /etc/rsyslog.d/rsyslog.conf "https://raw.githubusercontent.com/dasari97/sample/main/ELK_Custom_log_File.conf" &>>/tmp/log
+status_check $?
+
+print "Restarting Rsyslog."
+systemctl restart rsyslog
+status_check $?
+
+}
+
 
 DOWNLOAD() {
     print "Downloading ${component} content \t\t"
@@ -103,6 +114,8 @@ NODEJS() {
     
     Filebeat
     
+    Rsyslog
+    
     SYSTEMD_SETUP
     }
     
@@ -123,11 +136,13 @@ status_check $?
 USERID=$(id -u roboshop)
 GROUPID=$(id -g roboshop)
 
-print "updating the congif file.\t\t"
+print "updating the config file.\t\t"
 sed -i -e "/uid/ c uid=${USERID}"  -e "/gid/ c gid=${GROUPID}" /home/roboshop/payment/payment.ini
 status_check $?
 
 Filebeat
+
+Rsyslog
 
 SYSTEMD_SETUP
 }
