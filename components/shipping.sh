@@ -18,6 +18,7 @@ cd shipping &>>/tmp/log && mvn clean package &>>/tmp/log && mv target/shipping-1
 
 chown roboshop:roboshop -R /home/roboshop
 
+Filebeat
+
 SYSTEMD_SETUP
 
-Filebeat

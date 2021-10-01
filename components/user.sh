@@ -7,4 +7,3 @@ component=user
 ##NODEJS is a function from common.sh
 NODEJS
 
-Filebeat

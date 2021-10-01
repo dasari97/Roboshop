@@ -101,6 +101,8 @@ NODEJS() {
 
     chown roboshop:roboshop -R /home/roboshop
     
+    Filebeat
+    
     SYSTEMD_SETUP
     }
     
@@ -124,6 +126,8 @@ GROUPID=$(id -g roboshop)
 print "updating the congif file.\t\t"
 sed -i -e "/uid/ c uid=${USERID}"  -e "/gid/ c gid=${GROUPID}" /home/roboshop/payment/payment.ini
 status_check $?
+
+Filebeat
 
 SYSTEMD_SETUP
 }

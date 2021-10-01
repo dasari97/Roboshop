@@ -7,4 +7,3 @@ component=catalogue
 ##NODEJS is a function from common.sh
 NODEJS
 
-Filebeat
